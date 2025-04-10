@@ -329,9 +329,10 @@
   <a routerLink="/">Home</a> |
   <a routerLink="/about">About</a> |
   <a routerLink="/contact">Contact</a>
+  <div class="mode-toggle">
+    <img (click)="toggleMode()" [src]="isDarkMode ? '/assets/bulb-on.gif' : '/assets/bulb-off.gif'" alt="Toggle Mode">
+  </div>
 </nav>
-
-<hr>
 
 <router-outlet></router-outlet>
 

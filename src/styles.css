@@ -3,4 +3,19 @@
     text-align: center;
     margin-top: 50px;
     font-family: Arial, sans-serif;
+    background-color: transparent;
+    color: inherit;
+}
+
+body, html {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa; /* Default light background */
+  color: black; /* Default light text */
+}
+
+body.dark-mode, html.dark-mode {
+  background-color: #333; /* Dark background */
+  color: #fff; /* Dark text */
 }
