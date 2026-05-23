@@ -25,5 +25,14 @@
       "pathRewrite": {
         "^/api": "/api"
       }
+    },
+    "/vis-api": {
+      "target": "http://localhost:8081",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/vis-api": "/api"
+      }
     }
   }

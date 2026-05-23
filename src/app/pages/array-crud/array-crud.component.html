@@ -1,0 +1,65 @@
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-xl-10">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h2 class="card-title mb-3">Array CRUD Visualizer</h2>
+          <p class="text-secondary mb-4">Initialize array and perform create/read/update/delete operations.</p>
+
+          <div class="row g-3">
+            <div class="col-md-9">
+              <label for="arrayInput" class="form-label">Initialize Array (comma-separated)</label>
+              <input id="arrayInput" [(ngModel)]="arrayInput" class="form-control" placeholder="4, 9, 1, 7">
+            </div>
+            <div class="col-md-3 d-grid align-self-end">
+              <button class="btn btn-primary" (click)="createArray()" [disabled]="loading">Create Array</button>
+            </div>
+          </div>
+
+          <div class="row g-3 mt-1">
+            <div class="col-md-4">
+              <label for="updateIndex" class="form-label">Update Index</label>
+              <input id="updateIndex" type="number" [(ngModel)]="updateIndex" class="form-control">
+            </div>
+            <div class="col-md-4">
+              <label for="updateValue" class="form-label">New Value</label>
+              <input id="updateValue" type="number" [(ngModel)]="updateValue" class="form-control">
+            </div>
+            <div class="col-md-4 d-grid align-self-end">
+              <button class="btn btn-outline-primary" (click)="updateArrayValue()" [disabled]="loading">Update Value</button>
+            </div>
+          </div>
+
+          <div class="row g-3 mt-1">
+            <div class="col-md-8">
+              <label for="deleteIndex" class="form-label">Delete Index</label>
+              <input id="deleteIndex" type="number" [(ngModel)]="deleteIndex" class="form-control">
+            </div>
+            <div class="col-md-4 d-grid align-self-end">
+              <button class="btn btn-outline-danger" (click)="deleteArrayValue()" [disabled]="loading">Delete Value</button>
+            </div>
+          </div>
+
+          <div class="d-flex gap-2 mt-4">
+            <button class="btn btn-secondary" (click)="readArray()" [disabled]="loading">Refresh Array</button>
+          </div>
+
+          <div class="mt-4" *ngIf="serverMessage">
+            <div class="alert alert-success py-2 mb-0">{{ serverMessage }}</div>
+          </div>
+          <div class="mt-4" *ngIf="errorMessage">
+            <div class="alert alert-danger py-2 mb-0">{{ errorMessage }}</div>
+          </div>
+
+          <div class="array-visual mt-4">
+            <div class="array-cell" *ngFor="let value of state; index as i; trackBy: trackByIndex">
+              <div class="index">{{ i }}</div>
+              <div class="value">{{ value }}</div>
+            </div>
+            <div class="text-secondary small" *ngIf="state.length === 0">Array is empty.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
