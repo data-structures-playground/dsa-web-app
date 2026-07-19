@@ -1,64 +1,47 @@
-<div class="container py-4">
-  <div class="row justify-content-center">
-    <div class="col-xl-10">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <h2 class="card-title mb-3">Array CRUD Visualizer</h2>
-          <p class="text-secondary mb-4">Initialize array and perform create/read/update/delete operations.</p>
+<div class="vis-container">
+  <h2>Array Visualization</h2>
+  <div class="controls">
+    <div class="input-group">
+      <label>Initial Array:</label>
+      <input type="text" [(ngModel)]="arrayInput" placeholder="4, 9, 1, 7">
+      <button (click)="createArray()" [disabled]="loading">Initialize</button>
+    </div>
+    <div class="actions">
+      <div class="action-item">
+        <label>Index:</label>
+        <input type="number" [(ngModel)]="updateIndex" placeholder="Idx">
+        <label>Value:</label>
+        <input type="number" [(ngModel)]="updateValue" placeholder="Val">
+        <button (click)="updateArrayValue()" [disabled]="loading">Update</button>
+      </div>
+      <div class="action-item">
+        <label>Index:</label>
+        <input type="number" [(ngModel)]="deleteIndex" placeholder="Idx">
+        <button (click)="deleteArrayValue()" [disabled]="loading">Delete</button>
+      </div>
+    </div>
+    <div class="actions" style="margin-top: 10px;">
+      <div class="action-item">
+        <label>Value:</label>
+        <input type="number" [(ngModel)]="addValue" placeholder="Val">
+        <button (click)="addArrayValue()" [disabled]="loading">Add to End</button>
+      </div>
+    </div>
+  </div>
 
-          <div class="row g-3">
-            <div class="col-md-9">
-              <label for="arrayInput" class="form-label">Initialize Array (comma-separated)</label>
-              <input id="arrayInput" [(ngModel)]="arrayInput" class="form-control" placeholder="4, 9, 1, 7">
-            </div>
-            <div class="col-md-3 d-grid align-self-end">
-              <button class="btn btn-primary" (click)="createArray()" [disabled]="loading">Create Array</button>
-            </div>
-          </div>
+  <div class="message-area">
+    <p *ngIf="serverMessage" class="success">{{ serverMessage }}</p>
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  </div>
 
-          <div class="row g-3 mt-1">
-            <div class="col-md-4">
-              <label for="updateIndex" class="form-label">Update Index</label>
-              <input id="updateIndex" type="number" [(ngModel)]="updateIndex" class="form-control">
-            </div>
-            <div class="col-md-4">
-              <label for="updateValue" class="form-label">New Value</label>
-              <input id="updateValue" type="number" [(ngModel)]="updateValue" class="form-control">
-            </div>
-            <div class="col-md-4 d-grid align-self-end">
-              <button class="btn btn-outline-primary" (click)="updateArrayValue()" [disabled]="loading">Update Value</button>
-            </div>
-          </div>
-
-          <div class="row g-3 mt-1">
-            <div class="col-md-8">
-              <label for="deleteIndex" class="form-label">Delete Index</label>
-              <input id="deleteIndex" type="number" [(ngModel)]="deleteIndex" class="form-control">
-            </div>
-            <div class="col-md-4 d-grid align-self-end">
-              <button class="btn btn-outline-danger" (click)="deleteArrayValue()" [disabled]="loading">Delete Value</button>
-            </div>
-          </div>
-
-          <div class="d-flex gap-2 mt-4">
-            <button class="btn btn-secondary" (click)="readArray()" [disabled]="loading">Refresh Array</button>
-          </div>
-
-          <div class="mt-4" *ngIf="serverMessage">
-            <div class="alert alert-success py-2 mb-0">{{ serverMessage }}</div>
-          </div>
-          <div class="mt-4" *ngIf="errorMessage">
-            <div class="alert alert-danger py-2 mb-0">{{ errorMessage }}</div>
-          </div>
-
-          <div class="array-visual mt-4">
-            <div class="array-cell" *ngFor="let value of state; index as i; trackBy: trackByIndex">
-              <div class="index">{{ i }}</div>
-              <div class="value">{{ value }}</div>
-            </div>
-            <div class="text-secondary small" *ngIf="state.length === 0">Array is empty.</div>
-          </div>
+  <div class="array-visual">
+    <div class="array-container">
+      <div class="array-row">
+        <div *ngFor="let value of state; index as i; trackBy: trackByIndex" class="array-cell">
+          <div class="index">{{ i }}</div>
+          <div class="value">{{ value }}</div>
         </div>
+        <div class="empty-msg" *ngIf="state.length === 0">Array is empty.</div>
       </div>
     </div>
   </div>

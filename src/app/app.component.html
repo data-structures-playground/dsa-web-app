@@ -14,13 +14,17 @@
     </button>
     <div class="collapse navbar-collapse" id="appNav">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" routerLink="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="/">Home</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="/about">About</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="/contact">Contact</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/array-crud">Array CRUD</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/array-crud">Array</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/stack">Stack</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/queue">Queue</a></li>
       </ul>
       <div class="d-flex align-items-center gap-2">
-        <button class="btn btn-light btn-sm" routerLink="/login">Login</button>
+        <button *ngIf="!isLoggedIn" class="btn btn-light btn-sm" routerLink="/login">Login</button>
+        <button *ngIf="!isLoggedIn" class="btn btn-outline-light btn-sm" routerLink="/register">Register</button>
+        <button *ngIf="isLoggedIn" class="btn btn-danger btn-sm" (click)="logout()">Logout</button>
         <button class="btn btn-outline-light btn-sm" (click)="toggleMode()">
           {{ isDarkMode ? 'Light' : 'Dark' }} Mode
         </button>

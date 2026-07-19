@@ -10,6 +10,7 @@ export const AUTH_TOKEN_STORAGE_KEY = 'dsna.auth.token';
 })
 export class AuthService {
   private readonly loginUrl = '/api/auth/login';
+  private readonly registerUrl = '/api/auth/register';
   private readonly isBrowser: boolean;
 
   constructor(
@@ -30,10 +31,22 @@ export class AuthService {
     );
   }
 
+  register(userData: { username: string; email: string; password: string }): Observable<string> {
+    return this.http.post(
+      this.registerUrl,
+      userData,
+      { responseType: 'text' }
+    );
+  }
+
   getToken(): string | null {
     return this.isBrowser
       ? localStorage.getItem(AUTH_TOKEN_STORAGE_KEY)
       : null;
+  }
+
+  isAuthenticated(): boolean {
+    return !!this.getToken();
   }
 
   clearToken(): void {

@@ -16,6 +16,7 @@ export class ArrayCrudComponent {
   arrayInput = '4, 9, 1, 7';
   updateIndex = 0;
   updateValue = 0;
+  addValue = 0;
   deleteIndex = 0;
 
   state: number[] = [];
@@ -60,6 +61,15 @@ export class ArrayCrudComponent {
   deleteArrayValue(): void {
     this.loading = true;
     this.arrayService.delete(this.deleteIndex).subscribe({
+      next: (response) => this.applyState(response),
+      error: (error) => this.handleError(error),
+      complete: () => (this.loading = false)
+    });
+  }
+
+  addArrayValue(): void {
+    this.loading = true;
+    this.arrayService.add(this.addValue).subscribe({
       next: (response) => this.applyState(response),
       error: (error) => this.handleError(error),
       complete: () => (this.loading = false)

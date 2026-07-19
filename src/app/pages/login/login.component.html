@@ -28,5 +28,8 @@
     <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
 
     <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    <p style="margin-top: 1rem; text-align: center; font-size: 0.9rem;">
+      Don't have an account? <a routerLink="/register">Register here</a>
+    </p>
   </form>
 </div>

@@ -1,11 +1,13 @@
 import { Component, Inject, Renderer2, PLATFORM_ID, OnInit } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, CommonModule } from '@angular/common';
+import { AuthService } from './services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet, RouterLink, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -13,11 +15,14 @@ export class AppComponent implements OnInit {
   title = 'dsa-web-app';
 
   isDarkMode = false;
+  isLoggedIn = false;
   // isDarkMode = true; // Hard coded dark mode
 
   constructor(
     private renderer: Renderer2,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -27,6 +32,17 @@ export class AppComponent implements OnInit {
     } else {
       this.updateMode();
     }
+    this.checkAuthStatus();
+  }
+
+  checkAuthStatus() {
+    this.isLoggedIn = this.authService.isAuthenticated();
+  }
+
+  logout() {
+    this.authService.clearToken();
+    this.isLoggedIn = false;
+    this.router.navigate(['/login']);
   }
 
   detectSystemTheme() {

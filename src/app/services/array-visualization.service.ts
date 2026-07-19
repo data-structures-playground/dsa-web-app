@@ -24,11 +24,15 @@ export class ArrayVisualizationService {
     return this.http.get<ArrayStateResponse>(this.baseUrl);
   }
 
-  update(index: number, value: number): Observable<ArrayStateResponse> {
+    update(index: number, value: number): Observable<ArrayStateResponse> {
     return this.http.put<ArrayStateResponse>(`${this.baseUrl}/${index}`, { value });
   }
 
   delete(index: number): Observable<ArrayStateResponse> {
     return this.http.delete<ArrayStateResponse>(`${this.baseUrl}/${index}`);
+  }
+
+  add(value: number): Observable<ArrayStateResponse> {
+    return this.http.post<ArrayStateResponse>(`${this.baseUrl}/add`, value);
   }
 }
