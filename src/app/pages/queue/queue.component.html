@@ -1,0 +1,35 @@
+<div class="vis-container">
+  <h2>Queue Visualization</h2>
+  <div class="controls">
+    <div class="input-group">
+      <label>Initial Queue:</label>
+      <input type="text" [(ngModel)]="initialInput" placeholder="4, 9, 1, 7">
+      <button (click)="initialize()" [disabled]="loading">Initialize</button>
+    </div>
+    <div class="actions">
+      <div class="action-item">
+        <label>Value:</label>
+        <input type="number" [(ngModel)]="inputValue" placeholder="Val">
+        <button (click)="enqueue()" [disabled]="loading">Enqueue</button>
+      </div>
+      <div class="action-item">
+        <button (click)="dequeue()" [disabled]="loading">Dequeue</button>
+        <button (click)="peek()" [disabled]="loading">Peek</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="message-area">
+    <p *ngIf="serverMessage" class="success">{{ serverMessage }}</p>
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  </div>
+
+  <div class="queue-visual">
+    <div class="queue-container">
+      <div *ngFor="let item of state" class="queue-element">
+        {{ item }}
+      </div>
+      <div *ngIf="state.length === 0" class="empty-queue">Queue is Empty</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+.vis-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  font-family: sans-serif;
+}
+
+.controls {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.input-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.message-area {
+  height: 20px;
+  margin-bottom: 1rem;
+}
+
+.success { color: green; }
+.error { color: red; }
+
+.queue-visual {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.queue-container {
+  border: 4px solid #333;
+  border-left: none;
+  border-right: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  background: #f9f9f9;
+  min-height: 80px;
+  gap: 10px;
+}
+
+.queue-element {
+  width: 60px;
+  height: 60px;
+  background: #28a745;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  animation: slideRight 0.3s ease-out;
+}
+
+.empty-queue {
+  color: #888;
+  font-style: italic;
+}
+
+@keyframes slideRight {
+  from { transform: translateX(20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}

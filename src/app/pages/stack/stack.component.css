@@ -1,0 +1,75 @@
+.vis-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  font-family: sans-serif;
+}
+
+.controls {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.input-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.message-area {
+  height: 20px;
+  margin-bottom: 1rem;
+}
+
+.success { color: green; }
+.error { color: red; }
+
+.stack-visual {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.stack-column {
+  border: 4px solid #333;
+  border-top: none;
+  width: 100px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  padding: 10px;
+  background: #f9f9f9;
+}
+
+.stack-element {
+  width: 80px;
+  height: 40px;
+  background: #007bff;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  animation: slideIn 0.3s ease-out;
+}
+
+.empty-stack {
+  margin-top: auto;
+  color: #888;
+  font-style: italic;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
